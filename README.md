@@ -45,7 +45,7 @@ graph LR
         TRJ --> |P, R| CAM[simulate_landmarks]
         TRJ --> |R| MAG[simulate_mag]
         IMU --> |a_B, w_B| OUT[measurements]
-        GPS --> |p_meas, is_valid| OUT
+        GPS --> |p_meas, v_meas, is_valid| OUT
         CAM --> |y_meas, bearing| OUT
         MAG --> |y_meas| OUT
     end
@@ -106,6 +106,7 @@ function estimates = my_observer(measurements, init_state, params)
 | `measurements.imu.w_B` | Gyroscope readings (body frame), 3×N |
 | `measurements.imu.time` | IMU time vector, 1×N |
 | `measurements.gps.p_meas` | GPS position, 3×M |
+| `measurements.gps.v_meas` | GPS velocity, 3×M |
 | `measurements.gps.is_valid` | Boolean validity flag (false during outage), 1×M |
 | `measurements.gps.time` | GPS time vector, 1×M |
 | `measurements.cam.y_meas` | Stereo landmark positions (body frame), 3×K×L |
