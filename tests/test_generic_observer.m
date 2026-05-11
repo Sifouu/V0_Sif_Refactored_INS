@@ -22,8 +22,8 @@ disp('Simulating sensors...');
 
 % IMU (200 Hz)
 imu_params.frequency = 1000;
-imu_params.accel_noise_std = 0.05;
-imu_params.gyro_noise_std = 0.01;
+imu_params.accel_noise_std = 0.05*0;
+imu_params.gyro_noise_std = 0.01*0;
 imu_params.accel_bias = zeros(3,1); % Keep bias zero for now
 imu_params.gyro_bias = zeros(3,1);
 imu_params.g = 9.81;
@@ -31,17 +31,17 @@ imu_params.g = 9.81;
 
 % GPS (5 Hz) with outage
 gps_params.frequency = 1000;
-gps_params.noise_std_pos = 0.5;
-gps_params.noise_std_vel = 0.1;
-gps_params.outage_start = 4.0;
-gps_params.outage_end = 7.0;
+gps_params.noise_std_pos = 0.5*0;
+gps_params.noise_std_vel = 0.1*0;
+gps_params.outage_start = 4.0*0;
+gps_params.outage_end = 7.0*0;
 [measurements.gps.p_meas, measurements.gps.v_meas, measurements.gps.is_valid, measurements.gps.time] = simulate_gps(P_true, V_true, time_gt, gps_params);
 
 % Camera/Landmarks (20 Hz)
 cam_params.frequency = 1000;
 cam_params.num_landmarks = 5;
-cam_params.noise_std_pos = 0.1;
-cam_params.noise_std_bearing = 0.01;
+cam_params.noise_std_pos = 0.1*0;
+cam_params.noise_std_bearing = 0.01*0;
 [measurements.cam.landmark_meas, measurements.cam.bearing, measurements.cam.positions_I, measurements.cam.time] = simulate_landmarks(P_true, R_true, time_gt, cam_params);
 
 %% 3. Setup Observer

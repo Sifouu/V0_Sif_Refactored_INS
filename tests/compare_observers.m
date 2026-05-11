@@ -1,3 +1,4 @@
+%% 
 % compare_observers.m
 % Script to compare the performance of multiple observers side-by-side.
 
@@ -31,16 +32,16 @@ imu_params.g = 9.81;
 [measurements.imu.a_B, measurements.imu.w_B, measurements.imu.time] = simulate_imu(A_true, W_true, R_true, time_gt, imu_params);
 
 % GPS (5 Hz) with 3-second outage
-gps_params.frequency = 5;
+gps_params.frequency = 1000;
 gps_params.noise_std_pos = 0.5;
 gps_params.noise_std_vel = 0.1;
-gps_params.outage_start = 10.0;
-gps_params.outage_end = 13.0;
+gps_params.outage_start = 10.0*0;
+gps_params.outage_end = 13.0*0;
 [measurements.gps.p_meas, measurements.gps.v_meas, measurements.gps.is_valid, measurements.gps.time] = simulate_gps(P_true, V_true, time_gt, gps_params);
 
 % Camera/Landmarks (20 Hz)
-cam_params.frequency = 20;
-cam_params.num_landmarks = 8;
+cam_params.frequency = 1000;
+cam_params.num_landmarks = 10;
 cam_params.noise_std_pos = 0.1;
 cam_params.noise_std_bearing = 0.01;
 [measurements.cam.landmark_meas, measurements.cam.bearing, measurements.cam.positions_I, measurements.cam.time] = simulate_landmarks(P_true, R_true, time_gt, cam_params);
@@ -59,7 +60,7 @@ params.k_att = 10;
 % Initial State with error
 init_state.P = P_true(:, 1) + [1.5; -1.5; 0.5];
 init_state.V = V_true(:, 1) + [0.5; -0.5; 0];
-theta = 0.1;
+theta = 10;
 R_err = [cos(theta) -sin(theta) 0; sin(theta) cos(theta) 0; 0 0 1];
 init_state.R = R_true{1} * R_err;
 
