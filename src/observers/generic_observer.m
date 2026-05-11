@@ -83,7 +83,7 @@ function estimates = generic_observer(measurements, init_state, params)
                 num_landmarks = size(measurements.cam.positions_I, 2);
                 for l = 1:num_landmarks
                     p_land_I = measurements.cam.positions_I(:, l);
-                    y_meas_land = measurements.cam.y_meas(:, idx_cam, l);
+                    y_meas_land = measurements.cam.landmark_meas(:, idx_cam, l);
                     
                     % C matrix block for Landmark
                     C_land = kron([-1, 0, p_land_I'], eye(3));

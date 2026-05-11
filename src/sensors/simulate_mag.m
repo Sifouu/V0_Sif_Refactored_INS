@@ -1,4 +1,4 @@
-function [m_B_meas, time_mag] = simulate_mag(R_true, time_gt, mag_params)
+function [mag_meas, time_mag] = simulate_mag(R_true, time_gt, mag_params)
 % SIMULATE_MAG Generates noisy Magnetometer measurements from ground truth attitude.
 %
 % Inputs:
@@ -10,7 +10,7 @@ function [m_B_meas, time_mag] = simulate_mag(R_true, time_gt, mag_params)
 %       .m_I       - 3x1 Inertial magnetic field vector (default: [1/sqrt(2); 0; 1/sqrt(2)])
 %
 % Outputs:
-%   m_B_meas - 3xM matrix of measured magnetic field in body frame
+%   mag_meas - 3xM matrix of measured magnetic field in body frame
 %   time_mag - 1xM vector of Magnetometer timestamps
 
     % Default inertial magnetic field if not provided
@@ -24,7 +24,7 @@ function [m_B_meas, time_mag] = simulate_mag(R_true, time_gt, mag_params)
     M = length(time_mag);
     
     % Preallocate outputs
-    m_B_meas = zeros(3, M);
+    mag_meas = zeros(3, M);
     
     % Generate white noise
     mag_noise = mag_params.noise_std * randn(3, M);
@@ -36,6 +36,6 @@ function [m_B_meas, time_mag] = simulate_mag(R_true, time_gt, mag_params)
         
         % Equation: m_meas = R^T * m_I + noise  (No bias as requested)
         m_true_body = R' * mag_params.m_I;
-        m_B_meas(:, i) = m_true_body + mag_noise(:, i);
+        mag_meas(:, i) = m_true_body + mag_noise(:, i);
     end
 end

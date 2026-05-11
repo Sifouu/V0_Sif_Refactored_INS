@@ -5,8 +5,8 @@ function estimates = observer_template(measurements, init_state, params)
 %   measurements - Struct containing sensor data:
 %       .imu  (time, a_B, w_B)
 %       .gps  (time, p_gps_meas, v_gps_meas, is_valid)
-%       .mag  (time, m_B_meas)
-%       .cam  (time, y_meas, bearing, positions_I)
+%       .mag  (time, mag_meas)
+%       .cam  (time, landmark_meas, bearing, positions_I)
 %   init_state   - Struct with initial state estimates:
 %       .P    (3x1 initial position)
 %       .V    (3x1 initial velocity)

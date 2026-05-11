@@ -24,7 +24,7 @@ landmark_params.noise_std_bearing = 0.01; % Noise for normalized bearing
 %% 3. Simulate Landmarks
 disp('Simulating Camera/Landmark measurements (20 Hz)...');
 tic;
-[y_meas, bearing, positions_I, time_cam] = simulate_landmarks(P_true, R_true, time_gt, landmark_params);
+[landmark_meas, bearing, positions_I, time_cam] = simulate_landmarks(P_true, R_true, time_gt, landmark_params);
 toc;
 
 %% 4. Plot Results
@@ -64,7 +64,7 @@ end
 for i = 1:3
     subplot(3,1,i);
     plot(time_cam, y_true_L1(i,:), 'k-', 'LineWidth', 1.5); hold on;
-    plot(time_cam, squeeze(y_meas(i,:,1)), 'g.', 'MarkerSize', 6);
+    plot(time_cam, squeeze(landmark_meas(i,:,1)), 'g.', 'MarkerSize', 6);
     ylabel(sprintf('y_{meas,%d} [m]', i));
     if i == 1
         title('Stereo/Depth Measurement: True vs Noisy (Landmark 1)'); 

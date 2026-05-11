@@ -42,7 +42,7 @@ cam_params.frequency = 1000;
 cam_params.num_landmarks = 5;
 cam_params.noise_std_pos = 0.1;
 cam_params.noise_std_bearing = 0.01;
-[measurements.cam.y_meas, measurements.cam.bearing, measurements.cam.positions_I, measurements.cam.time] = simulate_landmarks(P_true, R_true, time_gt, cam_params);
+[measurements.cam.landmark_meas, measurements.cam.bearing, measurements.cam.positions_I, measurements.cam.time] = simulate_landmarks(P_true, R_true, time_gt, cam_params);
 
 %% 3. Setup Observer
 % Initial state with some errors

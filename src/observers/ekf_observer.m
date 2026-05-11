@@ -95,7 +95,7 @@ function estimates = ekf_observer(measurements, init_state, params)
                 num_landmarks = size(measurements.cam.positions_I, 2);
                 for l = 1:num_landmarks
                     p_land_I = measurements.cam.positions_I(:, l);
-                    y_meas_land = measurements.cam.y_meas(:, idx_cam, l); % relative pos in body frame
+                    y_meas_land = measurements.cam.landmark_meas(:, idx_cam, l); % relative pos in body frame
                     
                     % Predicted measurement
                     hat_y = hat_R' * (p_land_I - hat_p);

@@ -1,4 +1,4 @@
-function [y_meas, bearing, positions_I, time_cam] = simulate_landmarks(P_true, R_true, time_gt, landmark_params)
+function [landmark_meas, bearing, positions_I, time_cam] = simulate_landmarks(P_true, R_true, time_gt, landmark_params)
 % SIMULATE_LANDMARKS Generates noisy camera measurements (relative position and bearing).
 % It automatically generates random landmark positions distributed around the
 % drone's trajectory.
@@ -14,7 +14,7 @@ function [y_meas, bearing, positions_I, time_cam] = simulate_landmarks(P_true, R
 %       .noise_std_bearing - White noise standard deviation for bearing vector
 %
 % Outputs:
-%   y_meas      - 3xMxL array of measured 3D relative positions in body frame
+%   landmark_meas - 3xMxL array of measured 3D relative positions in body frame
 %   bearing     - 3xMxL array of measured normalized bearing vectors in body frame
 %   positions_I - 3xL matrix of the generated inertial positions of the landmarks
 %   time_cam    - 1xM vector of Camera timestamps
@@ -41,7 +41,7 @@ function [y_meas, bearing, positions_I, time_cam] = simulate_landmarks(P_true, R
     P_interp = interp1(time_gt, P_true', time_cam, 'linear')';
     
     % Preallocate outputs
-    y_meas = zeros(3, M, L);
+    landmark_meas = zeros(3, M, L);
     bearing = zeros(3, M, L);
     
     % 3. Simulate Measurements
@@ -56,7 +56,7 @@ function [y_meas, bearing, positions_I, time_cam] = simulate_landmarks(P_true, R
             
             % Stereo/Depth Measurement: Add position noise
             noise_pos = landmark_params.noise_std_pos * randn(3, 1);
-            y_meas(:, k, l) = y_true + noise_pos;
+            landmark_meas(:, k, l) = y_true + noise_pos;
             
             % Monocular Measurement: Calculate true bearing
             b_true = y_true / norm(y_true);
