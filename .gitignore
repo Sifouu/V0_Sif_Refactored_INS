@@ -1,0 +1,17 @@
+# MATLAB
+*.asv
+*.m~
+*.slprj
+*.mex*
+*.mat
+*.fig
+!figures/*.fig # Keep figures if they are part of the repo, but often .mat/.fig are large/binary
+*.log
+
+# Workspace
+.DS_Store
+.idea/
+.vscode/
+
+# OS
+Thumbs.db
