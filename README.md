@@ -215,8 +215,3 @@ All output figures and videos are automatically saved to `../figures/`.
 
 ---
 
-## Key References
-
-- **Generic Observer (LPV):** Martin, P., & Salaün, E. — *Generalized Multiplicative Extended Kalman Filter*
-- **Error-State EKF:** Joan Solà — *Quaternion kinematics for the error-state Kalman filter* (2017)
-- **Rodrigues' Formula:** `ALLFUNCS.Rexp()` implements the exact closed-form exponential map on SO(3)
