@@ -23,8 +23,8 @@ function estimates = ekf_observer(measurements, init_state, params)
     P_cov = blkdiag(params.P0(1:3,1:3), params.P0(4:6,4:6), params.P0(7:9,7:9));
     
     % Define Process Noise (IMU variances)
-    Q_a = eye(3) * 0.1;  % Accelerometer noise
-    Q_w = eye(3) * 0.01; % Gyroscope noise
+    Q_a = params.Q_imu_accel;  % Accelerometer noise
+    Q_w = params.Q_imu_gyro; % Gyroscope noise
     
     % Save initial estimates
     estimates.P(:, 1) = hat_p;

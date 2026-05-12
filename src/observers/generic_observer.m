@@ -27,6 +27,10 @@ function estimates = generic_observer(measurements, init_state, params)
 
     % Initialize Riccati Covariance Matrix
     P_cov = params.P0;
+    
+    Q_a = params.Q_imu_accel;  % Accelerometer noise
+    Q_w = params.Q_imu_gyro; % Gyroscope noise
+
 
     % Exact discrete matrices for LPV
     A_bar = zeros(15);
@@ -104,7 +108,13 @@ function estimates = generic_observer(measurements, init_state, params)
 
         % 1. CONTINUOUS PREDICTION (Runs every IMU cycle)
         % Predict the state and covariance forward by dt
-        P_dot = A * P_cov + P_cov * A' + params.V_noise;
+
+        G = zeros(15, 6);
+        G(4:6, 1:3) = current_R;
+        G(7:9, 4:6) = current_R;
+        Q_c = G * blkdiag(Q_a, Q_w) * G';
+
+        P_dot = A * P_cov + P_cov * A' + Q_c;
         P_cov_pred = P_cov + dt * P_dot;
         P_cov_pred = 0.5 * (P_cov_pred + P_cov_pred'); % Ensure symmetry
 

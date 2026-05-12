@@ -40,7 +40,7 @@ gps_params.outage_end = 5.0*0;
 [measurements.gps.p_meas, measurements.gps.v_meas, measurements.gps.is_valid, measurements.gps.time] = simulate_gps(P_true, V_true, time_gt, gps_params);
 
 % Camera/Landmarks (20 Hz)
-cam_params.frequency = 20;
+cam_params.frequency = 100;
 cam_params.num_landmarks = 10;
 cam_params.noise_std_pos = 0.1;
 cam_params.noise_std_bearing = 0.01;
@@ -48,15 +48,18 @@ cam_params.noise_std_bearing = 0.01;
 
 %% 3. Setup Common Parameters
 params.g = 9.81;
-params.g_vec = [0; 0; -params.g];
-params.Q_gps = gps_params.noise_std_pos^2 * eye(3);
-params.Q_cam = cam_params.noise_std_pos^2 * eye(3);
+params.Q_imu_accel = imu_params.accel_noise_std^2 *eye(3);
+params.Q_imu_gyro  = imu_params.gyro_noise_std^2 *eye(3);
+params.g_vec       = [0; 0; -params.g];
+params.Q_gps       = gps_params.noise_std_pos^2 * eye(3);
+params.Q_cam       = cam_params.noise_std_pos^2 * eye(3);
+
 
 
 
 % Initial State with error
-initial_deviation_P = 10;
-initial_deviation_V = 10;
+initial_deviation_P = 15;
+initial_deviation_V = 5;
 initial_deviation_angle = 3.14;
 theta = initial_deviation_angle;
 R_err = [cos(theta) -sin(theta) 0; sin(theta) cos(theta) 0; 0 0 1];
@@ -66,8 +69,8 @@ init_state.V = V_true(:, 1) + initial_deviation_V*[1; 1; 1];
 init_state.R = R_true{1} * R_err;
 
 % P0 Initialization (Generic uses 15x15, EKF uses 9x9 but will slice it automatically)
-params.P0 = blkdiag(220*eye(3), 25*eye(3), 10*eye(3), 10*eye(3), 10*eye(3));
-params.V_noise = blkdiag(0.1*eye(3), 0.1*eye(3), 0.01*eye(3), 0.01*eye(3), 0.01*eye(3));
+params.P0 = blkdiag(initial_deviation_P^2*eye(3), initial_deviation_V^2*eye(3), initial_deviation_angle^2*eye(9));
+%params.P0 = blkdiag(eye(3), eye(3), eye(3), eye(3), eye(3));
 params.k_att = 100;
 
 
@@ -102,6 +105,19 @@ for k = 1:M_est
 end
 
 [err_generic, rmse_gen] = compute_metrics(gt_downsampled, est_generic);
+
+
+M_est = length(est_ekf.time);
+gt_downsampled.time = est_ekf.time;
+gt_downsampled.P = zeros(3, M_est);
+gt_downsampled.V = zeros(3, M_est);
+gt_downsampled.R = cell(1, M_est);
+for k = 1:M_est
+    [~, idx] = min(abs(time_gt - est_ekf.time(k)));
+    gt_downsampled.P(:, k) = P_true(:, idx);
+    gt_downsampled.V(:, k) = V_true(:, idx);
+    gt_downsampled.R{k}    = R_true{idx};
+end
 [err_ekf, rmse_ekf]     = compute_metrics(gt_downsampled, est_ekf);
 
 % Print Comparison Table
@@ -112,6 +128,17 @@ fprintf('Metric               | Generic Observer | Standard EKF\n');
 fprintf('-------------------------------------------------------\n');
 fprintf('Position (m)         | %16.4f | %12.4f\n', rmse_gen.position_euclidean, rmse_ekf.position_euclidean);
 fprintf('Velocity (m/s)       | %16.4f | %12.4f\n', rmse_gen.velocity_euclidean, rmse_ekf.velocity_euclidean);
+fprintf('Attitude Trace       | %16.6f | %12.6f\n', rmse_gen.attitude_trace, rmse_ekf.attitude_trace);
+fprintf('=======================================================\n');
+
+% Print Comparison Table
+fprintf('\n=======================================================\n');
+fprintf('                  RMSE Comparison Table\n');
+fprintf('=======================================================\n');
+fprintf('Metric               | Generic Observer | Standard EKF\n');
+fprintf('-------------------------------------------------------\n');
+fprintf('Position (m)         | %16.4f | %12.4f\n', rmse_gen.position_geometric, rmse_ekf.position_geometric);
+fprintf('Velocity (m/s)       | %16.4f | %12.4f\n', rmse_gen.velocity_geometric, rmse_ekf.velocity_geometric);
 fprintf('Attitude Trace       | %16.6f | %12.6f\n', rmse_gen.attitude_trace, rmse_ekf.attitude_trace);
 fprintf('=======================================================\n');
 
