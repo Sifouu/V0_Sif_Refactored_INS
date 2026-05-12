@@ -20,7 +20,7 @@ function estimates = ekf_observer(measurements, init_state, params)
     hat_R = init_state.R;
     
     % Initialize Error State Covariance Matrix (9x9)
-    P_cov = blkdiag(eye(3), eye(3), 0.1 * eye(3));
+    P_cov = blkdiag(params.P0(1:3,1:3), params.P0(4:6,4:6), params.P0(7:9,7:9));
     
     % Define Process Noise (IMU variances)
     Q_a = eye(3) * 0.1;  % Accelerometer noise

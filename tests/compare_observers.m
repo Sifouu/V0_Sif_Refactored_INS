@@ -7,7 +7,7 @@ addpath(genpath('../src'));  % All source modules
 
 %% 1. Generate High-Frequency Ground Truth
 frequency_gt = 1000;
-t_final = 25;
+t_final = 5;
 type = 'figure8';
 perturbation = struct();
 disp('Generating ground truth (1000 Hz)...');
@@ -23,7 +23,7 @@ ground_truth.time = time_gt;
 disp('Simulating sensors...');
 
 % IMU (1000 Hz)
-imu_params.frequency = 1000;
+imu_params.frequency = 500;
 imu_params.accel_noise_std = 0.05;
 imu_params.gyro_noise_std = 0.01;
 imu_params.accel_bias = zeros(3,1);
@@ -32,15 +32,15 @@ imu_params.g = 9.81;
 [measurements.imu.a_B, measurements.imu.w_B, measurements.imu.time] = simulate_imu(A_true, W_true, R_true, time_gt, imu_params);
 
 % GPS (5 Hz) with 3-second outage
-gps_params.frequency = 1000;
+gps_params.frequency = 5;
 gps_params.noise_std_pos = 0.5;
 gps_params.noise_std_vel = 0.1;
-gps_params.outage_start = 10.0*0;
-gps_params.outage_end = 13.0*0;
+gps_params.outage_start = 2.0*0;
+gps_params.outage_end = 5.0*0;
 [measurements.gps.p_meas, measurements.gps.v_meas, measurements.gps.is_valid, measurements.gps.time] = simulate_gps(P_true, V_true, time_gt, gps_params);
 
 % Camera/Landmarks (20 Hz)
-cam_params.frequency = 1000;
+cam_params.frequency = 20;
 cam_params.num_landmarks = 10;
 cam_params.noise_std_pos = 0.1;
 cam_params.noise_std_bearing = 0.01;
@@ -52,17 +52,24 @@ params.g_vec = [0; 0; -params.g];
 params.Q_gps = gps_params.noise_std_pos^2 * eye(3);
 params.Q_cam = cam_params.noise_std_pos^2 * eye(3);
 
-% P0 Initialization (Generic uses 15x15, EKF uses 9x9 but will slice it automatically)
-params.P0 = blkdiag(eye(3), eye(3), 0.1*eye(3), 0.1*eye(3), 0.1*eye(3));
-params.V_noise = blkdiag(0.1*eye(3), 0.1*eye(3), 0.01*eye(3), 0.01*eye(3), 0.01*eye(3));
-params.k_att = 10;
+
 
 % Initial State with error
-init_state.P = P_true(:, 1) + [1.5; -1.5; 0.5];
-init_state.V = V_true(:, 1) + [0.5; -0.5; 0];
-theta = 10;
+initial_deviation_P = 10;
+initial_deviation_V = 10;
+initial_deviation_angle = 3.14;
+theta = initial_deviation_angle;
 R_err = [cos(theta) -sin(theta) 0; sin(theta) cos(theta) 0; 0 0 1];
+
+init_state.P = P_true(:, 1) + initial_deviation_P*[1; 1; 1];
+init_state.V = V_true(:, 1) + initial_deviation_V*[1; 1; 1];
 init_state.R = R_true{1} * R_err;
+
+% P0 Initialization (Generic uses 15x15, EKF uses 9x9 but will slice it automatically)
+params.P0 = blkdiag(220*eye(3), 25*eye(3), 10*eye(3), 10*eye(3), 10*eye(3));
+params.V_noise = blkdiag(0.1*eye(3), 0.1*eye(3), 0.01*eye(3), 0.01*eye(3), 0.01*eye(3));
+params.k_att = 100;
+
 
 %% 4. Run Observers
 % 4A. Generic Observer (LPV NCF)

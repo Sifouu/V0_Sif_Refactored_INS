@@ -32,7 +32,7 @@ function [R_true, P_true, V_true, W_true, A_true] = generate_trajectory(frequenc
     % Define Trajectory Types
     if strcmp(type, 'circular')
         radius = 5;
-        omega = 0.5; % rad/s
+        omega = 5; % rad/s
         height = 5;
         
         % Position
@@ -48,7 +48,7 @@ function [R_true, P_true, V_true, W_true, A_true] = generate_trajectory(frequenc
     elseif strcmp(type, 'figure8')
         A = 5; % X amplitude
         B = 5; % Y amplitude
-        omega = 0.5;
+        omega = 5;
         height = 5;
         
         % Position (Lissajous curve)
