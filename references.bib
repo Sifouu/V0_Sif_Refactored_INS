@@ -1,0 +1,552 @@
+@article{markley1988attitude,
+  author    = {F. Landis Markley},
+  title     = {Attitude determination using vector observations and the singular value decomposition},
+  journal   = {The Journal of the Astronautical Sciences},
+  volume    = {36},
+  number    = {3},
+  pages     = {245--258},
+  year      = {1988},
+}
+@article{berkane2017design,
+  title={On the Design of Attitude Complementary Filters on {$SO(3)$}},
+  author={Berkane, Soulaimane and Tayebi, Abdelhamid},
+  journal={IEEE Transactions on Automatic Control},
+  volume={63},
+  number={3},
+  pages={880--887},
+  year={2017},
+  publisher={IEEE}
+}
+@article{shuster1981three,
+  title={Three-axis attitude determination from vector observations},
+  author={Shuster, Malcolm David and Oh, S D\_},
+  journal={Journal of guidance and Control},
+  volume={4},
+  number={1},
+  pages={70--77},
+  year={1981}
+}
+@article{wahba1965least,
+  title={A least squares estimate of satellite attitude},
+  author={Wahba, Grace},
+  journal={SIAM review},
+  volume={7},
+  number={3},
+  pages={409--409},
+  year={1965},
+  publisher={Society for Industrial and Applied Mathematics}
+}
+@article{hamel2018riccati,
+   abstract = {This paper revisits the problem of estimating the pose (position and orientation) of a body in 3D space with respect to (w.r.t.) an inertial frame by using i) the knowledge of source points positions in the inertial frame, ii) the measurements of the body angular velocity expressed in the body's frame iii) the measurements of the body translational velocity, either in the body frame or in the inertial frame, and iv) source points bearing measurements performed in the body frame. An important difference with the much studied static Perspective-n-Point (PnP) problem addressed with iterative algorithms is that body motion is not only allowed but also used as a source of information that improves the estimation possibilities. With respect to the probabilistic framework commonly used in other studies that develop Extended Kalman filter (EKF) solutions, the deterministic approach here adopted is better suited to point out the observability conditions, that involve the number and disposition of the source points in combination with body motion characteristics, under which the proposed observers ensure robust estimation of the body pose. These observers are here named Riccati observers because of the instrumental role played by the Continuous Riccati equation (CRE) in the design of the observers and in the Lyapunov stability and convergence analysis that we develop independently of the well-known complementary (either deterministic or probabilistic) optimality properties associated with Kalman filtering. The set of these observers also encompasses Extended Kalman filter solutions. Another contribution of the present study is to show the importance of using body motion to improve the observers performance and, when this is possible, of measuring the body translational velocity in the inertial frame rather than in the body frame to allow for the body pose estimation from a single source point taken as the origin of the inertial frame. This latter possibility finds a natural extension in the Simultaneous Localization and Mapping (SLAM) problem in Robotics.},
+   author = {Tarek Hamel and Claude Samson},
+   doi = {10.1109/TAC.2017.2726179},
+   issn = {0018-9286},
+   issue = {3},
+   journal = {IEEE Transactions on Automatic Control},
+   keywords = {Index Terms-Observers for nonlinear systems,Perspective-n-Point problem,Riccati equation,observability},
+   month = {3},
+   pages = {726-741},
+   title = {Riccati Observers for the Nonstationary PnP Problem},
+   volume = {63},
+   year = {2018}
+}
+@article{Mahony_Hamel_Pflimlin,
+   abstract = {This paper considers the problem of obtaining good attitude estimates from measurements obtained from typical low cost inertial measurement units. The outputs of such systems are characterised by high noise levels and time varying additive biases. We formulate the filtering problem as deterministic observer kinematics posed directly on the special orthogonal group SO(3) driven by reconstructed attitude and angular velocity measurements. Lyapunov analysis results for the proposed observers are derived that ensure almost global stability of the observer error. The approach taken leads to an observer that we term the direct complementary filter. By exploiting the geometry of the special orthogonal group a related observer, termed the passive complementary filter, is derived that decouples the gyro measurements from the reconstructed attitude in the observer inputs. Both the direct and passive filters can be extended to estimate gyro bias on-line. The passive filter is further developed to provide a formulation in terms of the measurement error that avoids any algebraic reconstruction of the attitude. This leads to an observer on SO(3), termed the explicit complementary filter, that requires only accelerometer and gyro outputs; is suitable for implementation on embedded hardware; and provides good attitude estimates as well as estimating the gyro biases on-line. The performance of the observers are demonstrated with a set of experiments performed on a robotic test-bed and a radio controlled unmanned aerial vehicle. Index Terms-Complementary filter, nonlinear observer, attitude estimates, special orthogonal group.},
+   author = {Robert Mahony and Tarek Hamel and Jean-Michel Pflimlin},
+   doi = {10.1109/TAC.2008.923738},
+   isbn = {2008.923738},
+   issn = {0018-9286},
+   issue = {5},
+   journal = {IEEE Transactions on Automatic Control},
+   month = {6},
+   pages = {1203-1218},
+   title = {Nonlinear Complementary Filters on the Special Orthogonal Group},
+   volume = {53},
+   year = {2008}
+}
+
+
+@misc{tchonkeu2025baromete,
+      title={Barometer-Aided Attitude Estimation}, 
+      author={Méloné Nyoba Tchonkeu and Soulaimane Berkane and Tarek Hamel},
+      year={2025},
+      eprint={2509.13649},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2509.13649}, 
+}
+
+@INPROCEEDINGS{Hamel_CDC_2020_Vision_aided,
+
+  author={Hamel, Tarek and Hua, Minh-Duc and Samson, Claude},
+
+  booktitle={2020 59th IEEE Conference on Decision and Control (CDC)}, 
+
+  title={Deterministic observer design for vision-aided inertial navigation}, 
+
+  year={2020},
+
+  volume={},
+
+  number={},
+
+  pages={1306-1313},
+
+  keywords={Observers;Cameras;Sensors;Estimation;Velocity measurement;Transmission line matrix methods;Optical variables measurement},
+
+  doi={10.1109/CDC42340.2020.9304135}}
+
+
+@INPROCEEDINGS{Berkane_cdc_2017_gps,
+
+  author={Berkane, Soulaimane and Tayebi, Abdelhamid},
+
+  booktitle={2017 IEEE 56th Annual Conference on Decision and Control (CDC)}, 
+
+  title={Attitude and gyro bias estimation using GPS and IMU measurements}, 
+
+  year={2017},
+
+  volume={},
+
+  number={},
+
+  pages={2402-2407},
+
+  keywords={Observers;Acceleration;Accelerometers;Velocity measurement;Magnetometers;Global Positioning System},
+
+  doi={10.1109/CDC.2017.8264001}}
+
+
+@article{DEOLIVEIRA2024_pitot,
+title = {Pitot tube measure-aided air velocity and attitude estimation in GNSS denied environment},
+journal = {European Journal of Control},
+volume = {80},
+pages = {101070},
+year = {2024},
+note = {2024 European Control Conference Special Issue},
+issn = {0947-3580},
+doi = {https://doi.org/10.1016/j.ejcon.2024.101070},
+url = {https://www.sciencedirect.com/science/article/pii/S0947358024001304},
+author = {Tomas L. {de Oliveira} and Pieter {van Goor} and Tarek Hamel and Robert Mahony and Claude Samson},
+keywords = {Observers for nonlinear systems, Aerospace, UAV},
+abstract = {This paper addresses the problem of estimating air velocity and gravity direction for small autonomous fixed-wing drones in GNSS11Global Navigation Satellite Systems.-denied environments. The proposed solution uses a minimal sensor suite, relying on Pitot tube measurements and Inertial Measurement Unit (IMU) signals, including only gyrometers and accelerometers. The approach combines the Riccati observer and Equivariant Filter designs, using an over-parametrization technique to design an observer on SO(3)×R3 and subsequently re-project to S2×R3 to estimate the gravity direction. The system’s observability is analyzed, and local exponential stability of the origin of the observer error is demonstrated as long as the aircraft attitude is persistently exciting. The observer was evaluated using simulated and real flight data to showcase the estimator’s performance.}
+}
+
+
+@article{batista2012sensor,
+   author = {P. Batista and C. Silvestre and P. Oliveira},
+   doi = {10.1109/TAC.2012.2187142},
+   issn = {0018-9286},
+   issue = {8},
+   journal = {IEEE Transactions on Automatic Control},
+   month = {8},
+   pages = {2095-2100},
+   title = {Sensor-Based Globally Asymptotically Stable Filters for Attitude Estimation: Analysis, Design, and Performance Evaluation},
+   volume = {57},
+   year = {2012}
+}
+@article{zlotnik2016nonlinear,
+   author = {David Evan Zlotnik and James Richard Forbes},
+   doi = {10.1109/TAC.2016.2547222},
+   issn = {0018-9286},
+   issue = {1},
+   journal = {IEEE Transactions on Automatic Control},
+   month = {1},
+   pages = {149-160},
+   title = {Nonlinear Estimator Design on the Special Orthogonal Group Using Vector Measurements Directly},
+   volume = {62},
+   year = {2017}
+}
+@article{tayebi2006attitude,
+   author = {A. Tayebi and S. McGilvray},
+   doi = {10.1109/TCST.2006.872519},
+   issn = {1063-6536},
+   issue = {3},
+   journal = {IEEE Transactions on Control Systems Technology},
+   month = {5},
+   pages = {562-571},
+   title = {Attitude stabilization of a VTOL quadrotor aircraft},
+   volume = {14},
+   year = {2006}
+}
+@article{izadi2014rigid,
+   author = {Maziar Izadi and Amit K. Sanyal},
+   doi = {10.1016/j.automatica.2014.08.010},
+   issn = {00051098},
+   issue = {10},
+   journal = {Automatica},
+   month = {10},
+   pages = {2570-2577},
+   title = {Rigid body attitude estimation based on the Lagrange–d’Alembert principle},
+   volume = {50},
+   year = {2014}
+}
+@article{crassidis2007survey,
+   author = {John L. Crassidis and F. Landis Markley and Yang Cheng},
+   doi = {10.2514/1.22452},
+   issn = {0731-5090},
+   issue = {1},
+   journal = {Journal of Guidance, Control, and Dynamics},
+   month = {1},
+   pages = {12-28},
+   title = {Survey of Nonlinear Attitude Estimation Methods},
+   volume = {30},
+   year = {2007}
+}
+@article{lefferts1982kalman,
+   author = {E.J. Lefferts and F.L. Markley and M.D. Shuster},
+   doi = {10.2514/3.56190},
+   issn = {0731-5090},
+   issue = {5},
+   journal = {Journal of Guidance, Control, and Dynamics},
+   month = {9},
+   pages = {417-429},
+   title = {Kalman Filtering for Spacecraft Attitude Estimation},
+   volume = {5},
+   year = {1982}
+}
+@article{alnahhal2025scalar,
+   author = {Hassan Alnahhal and Sifeddine Benahmed and Soulaimane Berkane and Tarek Hamel},
+   doi = {10.1109/LCSYS.2025.3578470},
+   issn = {2475-1456},
+   journal = {IEEE Control Systems Letters},
+   pages = {1862-1867},
+   title = {Attitude Estimation Using Scalar Measurements},
+   volume = {9},
+   year = {2025}
+}
+@article{barrau2017invariant,
+   author = {Axel Barrau and Silvere Bonnabel},
+   doi = {10.1109/TAC.2016.2594085},
+   issn = {0018-9286},
+   issue = {4},
+   journal = {IEEE Transactions on Automatic Control},
+   month = {4},
+   pages = {1797-1812},
+   title = {The Invariant Extended Kalman Filter as a Stable Observer},
+   volume = {62},
+   year = {2017}
+}
+@article{barrau2018invariant,
+   abstract = {<p>The Kalman filter—or, more precisely, the extended Kalman filter (EKF)—is a fundamental engineering tool that is pervasively used in control and robotics and for various estimation tasks in autonomous systems. The recently developed field of invariant extended Kalman filtering uses the geometric structure of the state space and the dynamics to improve the EKF, notably in terms of mathematical guarantees. The methodology essentially applies in the fields of localization, navigation, and simultaneous localization and mapping (SLAM). Although it was created only recently, its remarkable robustness properties have already motivated a real industrial implementation in the aerospace field. This review aims to provide an accessible introduction to the methodology of invariant Kalman filtering and to allow readers to gain insight into the relevance of the method as well as its important differences with the conventional EKF. This should be of interest to readers intrigued by the practical application of mathematical theories and those interested in finding robust, simple-to-implement filters for localization, navigation, and SLAM, notably for autonomous vehicle guidance.</p>},
+   author = {Axel Barrau and Silvère Bonnabel},
+   doi = {10.1146/annurev-control-060117-105010},
+   issn = {2573-5144},
+   issue = {1},
+   journal = {Annual Review of Control, Robotics, and Autonomous Systems},
+   month = {5},
+   pages = {237-257},
+   title = {Invariant Kalman Filtering},
+   volume = {1},
+   year = {2018}
+}
+@article{hua2014implementation,
+   author = {Minh-Duc Hua and Guillaume Ducard and Tarek Hamel and Robert Mahony and Konrad Rudin},
+   doi = {10.1109/TCST.2013.2251635},
+   issn = {1063-6536},
+   journal = {IEEE Transactions on Control Systems Technology},
+   month = {1},
+   pages = {201-213},
+   title = {Implementation of a Nonlinear Attitude Estimator for Aerial Robotic Vehicles},
+   volume = {22},
+   year = {2014}
+}
+@article{aeyels1998asymptotic,
+   author = {D. Aeyels and R. Sepulchre and J. Peuteman},
+   doi = {10.1007/BF02741883},
+   issn = {0932-4194},
+   issue = {1},
+   journal = {Mathematics of Control, Signals, and Systems},
+   month = {3},
+   pages = {1-27},
+   title = {Asymptotic stability for time-variant systems and observability: Uniform and nonuniform criteria},
+   volume = {11},
+   year = {1998}
+}
+@book{chen1984linear,
+   abstract = {3rd ed. "An extensive revision of the author's highly successful text, this third edition of Linear System Theory and Design has been made more accessible to students from all related backgrounds. After introducing the fundamental properties of linear systems, the text discusses design using state equations and transfer functions." "The two main objectives of the text are to: use simple and efficient methods to develop results and design procedures; enable students to employ the results to carry out design." "Striking a balance between theory and applications, Linear System Theory and Design, 3/e, is ideal for use in advanced undergraduate/first-year graduate courses in linear systems and multivariable system design in electrical, mechanical, chemical, and aeronautical engineering departments. It assumes a working knowledge of linear algebra and the Laplace transform and an elementary knowledge of differential equations."--BOOK JACKET. Ch. 1. Introduction -- Ch. 2. Mathematical Descriptions of Systems -- Ch. 3. Linear Algebra -- Ch. 4. State-Space Solutions and Realizations -- Ch. 5. Stability -- Ch. 6. Controllability and Observability -- Ch. 7. Minimal Realizations and Coprime Fractions -- Ch. 8. State Feedback and State Estimators -- Ch. 9. Pole Placement and Model Matching.},
+   author = {Chi-Tsong. Chen},
+   isbn = {978-0-03-071691-1},
+   publisher = {Saunders College Publishing},
+   title = {Linear system theory and design},
+   year = {1984}
+}
+@inproceedings{bonnabel2009invariant,
+   author = {Silvere Bonnabel and Philippe Martin and Erwan Salaun},
+   doi = {10.1109/CDC.2009.5400372},
+   isbn = {978-1-4244-3871-6},
+   booktitle = {IEEE Conference on Decision and Control (CDC)},
+   month = {12},
+   pages = {1297-1304},
+   publisher = {IEEE},
+   title = {Invariant Extended Kalman Filter: theory and application to a velocity-aided attitude estimation problem},
+   year = {2009}
+}
+@article{hamel2017position,
+   author = {Tarek Hamel and Claude Samson},
+   doi = {10.1016/j.automatica.2017.04.045},
+   issn = {00051098},
+   journal = {Automatica},
+   month = {8},
+   pages = {137-144},
+   title = {Position estimation from direction or range measurements},
+   volume = {82},
+   year = {2017}
+}
+
+@article{bhat2000topological,
+  title={A topological obstruction to continuous global stabilization of rotational motion and the unwinding phenomenon},
+  author={Bhat, Sanjay P and Bernstein, Dennis S},
+  journal={Systems \& control letters},
+  volume={39},
+  number={1},
+  pages={63--70},
+  year={2000},
+  publisher={Elsevier}
+}
+
+@inproceedings{thienel2001coupled,
+  title={A coupled nonlinear spacecraft attitude controller/observer with an unknown constant gyro bias},
+  author={Thienel, J and Sanner, Robert M},
+  booktitle={Proceedings of the 40th IEEE Conference on Decision and Control},
+  volume={4},
+  pages={3441--3446},
+  year={2001},
+  organization={IEEE}
+}
+
+@article{grip2011attitude,
+  title={Attitude estimation using biased gyro and vector measurements with time-varying reference vectors},
+  author={Grip, H{\aa}vard Fj{\ae}r and Fossen, Thor I and Johansen, Tor A and Saberi, Ali},
+  journal={IEEE Transactions on automatic control},
+  volume={57},
+  number={5},
+  pages={1332--1338},
+  year={2011},
+  publisher={IEEE}
+}
+
+@article{laidig2021broad,
+  title={BROAD—A benchmark for robust inertial orientation estimation},
+  author={Laidig, Daniel and Caruso, Marco and Cereatti, Andrea and Seel, Thomas},
+  journal={Data},
+  volume={6},
+  number={7},
+  pages={72},
+  year={2021},
+  publisher={MDPI}
+}
+
+
+
+
+%%%%%%%% Cap %%%%%%%%%%
+
+@inproceedings{Unscented_Julier_Uhlmann_1997_Aerosense,
+  author    = {S. J. Julier and J. K. Uhlmann},
+  title     = {A New Extension of the Kalman Filter to Nonlinear Systems},
+  booktitle = {Proceedings of SPIE 3068, Signal Processing, Sensor Fusion, and Target Recognition VI},
+  year      = {1997},
+  pages     = {182--193},
+  address   = {Orlando, FL, USA},
+  organization = {SPIE},
+  doi       = {10.1117/12.280797}
+}
+
+@inproceedings{Unscented_Julier_Uhlmann_DurrantWhyte_ICRA_2000,
+  author    = {S. J. Julier and J. K. Uhlmann and H. F. Durrant-Whyte},
+  title     = {A New Method for the Nonlinear Transformation of Means and Covariances in Filters and Estimators},
+  booktitle = {Proceedings of the IEEE/RSJ International Conference on Robotics and Automation (ICRA)},
+  year      = {2000},
+  pages     = {162--167},
+  address   = {San Francisco, CA, USA},
+  doi       = {10.1109/ROBOT.2000.844730}
+}
+
+@article{Unscented_Crassidis_Markley_JGCD_2003,
+  author    = {J. L. Crassidis and F. L. Markley},
+  title     = {Unscented Filtering for Spacecraft Attitude Estimation},
+  journal   = {Journal of Guidance, Control, and Dynamics},
+  year      = {2003},
+  volume    = {26},
+  number    = {4},
+  pages     = {536--542},
+  doi       = {10.2514/2.5102}
+}
+
+@article{Unscented_Julier_Uhlmann_ProcIEEE_2004,
+  author    = {S. J. Julier and J. K. Uhlmann},
+  title     = {Unscented Filtering and Nonlinear Estimation},
+  journal   = {Proceedings of the IEEE},
+  year      = {2004},
+  volume    = {92},
+  number    = {3},
+  pages     = {401--422},
+  doi       = {10.1109/JPROC.2003.823141}
+}
+
+
+
+@article{Markley_JGCD_2003,
+  author    = {F. L. Markley},
+  title     = {Attitude Error Representations for Kalman Filtering},
+  journal   = {Journal of Guidance, Control, and Dynamics},
+  year      = {2003},
+  volume    = {26},
+  number    = {2},
+  pages     = {311--317}
+}
+
+
+%%%%%%%%%%%%%%%%%%
+
+@article{Jurdjevic_1972,
+  title={Control systems on {Lie} groups},
+  author={Jurdjevic, Velimir and Sussmann, Hector J},
+  journal={Journal of Differential Equations},
+  volume={12},
+  number={2},
+  pages={313--329},
+  year={1972},
+  publisher={Elsevier}
+}
+
+@article{Bullo_1999,
+  title={Tracking for fully actuated mechanical systems: a geometric framework},
+  author={Bullo, Francesco and Murray, Richard M},
+  journal={Automatica},
+  volume={35},
+  number={1},
+  pages={17--34},
+  year={1999},
+  publisher={Elsevier}
+}
+
+@article{Morin_2003,
+  title={Practical stabilization of driftless systems on {Lie} groups: the transverse function approach},
+  author={Morin, Pascal and Samson, Claude},
+  journal={IEEE Transactions on Automatic Control},
+  volume={48},
+  number={9},
+  pages={1496--1508},
+  year={2003},
+  publisher={IEEE}
+}
+
+@inproceedings{Baldwin_2007,
+  title={Complementary filter design on the {Special Euclidean} group {SE(3)}},
+  author={Baldwin, Grant and Mahony, Robert and Trumpf, Jochen and Hamel, Tarek and Cheviron, Thibault},
+  booktitle={European Control Conference (ECC)},
+  pages={3763--3770},
+  year={2007},
+  organization={IEEE}
+}
+
+@inproceedings{Sanyal_2008,
+  title={Global variational attitude estimation},
+  author={Sanyal, Amit K and Lee, Taeyoung and Leok, Melvin and McClamroch, N Harris},
+  booktitle={American Control Conference},
+  pages={2843--2848},
+  year={2008},
+  organization={IEEE}
+}
+
+@article{Lageman_2009,
+  title={Gradient-like observers for invariant dynamics on a {Lie} group},
+  author={Lageman, Christian and Trumpf, Jochen and Mahony, Robert},
+  journal={IEEE Transactions on Automatic Control},
+  volume={55},
+  number={2},
+  pages={367--377},
+  year={2010},
+  note={Note: Cited as 2009 in early drafts/arXiv},
+  publisher={IEEE}
+}
+
+@article{Vasconcelos_2010,
+  title={A nonlinear position and attitude observer on {SE(3)} using landmark measurements},
+  author={Vasconcelos, Jose F and Cunha, Rita and Silvestre, Carlos and Oliveira, Paulo},
+  journal={Systems \& Control Letters},
+  volume={59},
+  number={3-4},
+  pages={155--166},
+  year={2010},
+  publisher={Elsevier}
+}
+
+@inproceedings{Rouchon_2002,
+  title={An intrinsic observer for a class of {Lagrangian} systems},
+  author={Aghannan, N and Rouchon, P},
+  booktitle={Proceedings of the 41st IEEE Conference on Decision and Control},
+  volume={2},
+  pages={2334--2339},
+  year={2002},
+  organization={IEEE}
+}
+
+@inproceedings{MorinEudesScandaroli2017,
+  author    = {Pascal Morin and Alexandre Eudes and Glauco Scandaroli},
+  title     = {Uniform Observability of Linear Time-Varying Systems and Application to Robotics Problems},
+  booktitle = {Geometric Science of Information (GSI) },
+  year      = {2017},
+}
+
+@article{Bonnabel_2008,
+  title={Symmetry-preserving observers},
+  author={Bonnabel, Silvere and Martin, Philippe and Rouchon, Pierre},
+  journal={IEEE Transactions on Automatic Control},
+  volume={53},
+  number={11},
+  pages={2514--2526},
+  year={2008},
+  publisher={IEEE}
+}
+
+@inproceedings{Martin_2010,
+  title={Invariant observers for attitude and heading estimation from low-cost inertial and magnetic sensors},
+  author={Martin, Philippe and Salaun, Erwan},
+  booktitle={49th IEEE Conference on Decision and Control},
+  pages={1039--1045},
+  year={2010},
+  organization={IEEE}
+}
+
+@inproceedings{Barczyk_2012,
+  title={Invariant extended {Kalman} filter design for a class of nonlinear observers},
+  author={Barczyk, Martin and Lynch, Alan F},
+  booktitle={American Control Conference (ACC)},
+  pages={1974--1979},
+  year={2012},
+  organization={IEEE}
+}
+
+@article{Trumpf_2012,
+  title={Analysis of non-linear attitude observers for time-varying reference measurements},
+  author={Trumpf, Jochen and Mahony, Robert and Hamel, Tarek and Lageman, Christian},
+  journal={IEEE Transactions on Automatic Control},
+  volume={57},
+  number={11},
+  pages={2789--2800},
+  year={2012},
+  publisher={IEEE}
+}
+
+@article{Wang_2022,
+  title={Nonlinear observers design for vision-aided inertial navigation systems},
+  author={Wang, Miaomiao and Berkane, Soulaimane and Tayebi, Abdelhamid},
+  journal={IEEE Transactions on Automatic Control},
+  volume={67},
+  number={4},
+  pages={1853--1868},
+  year={2022},
+  publisher={IEEE}
+}
+
+@article{Melis2026,
+    author ={ Melis, Alessandro and Bouazza, Tarek and Alnahhal, Hassan and Benahmed, Siffedine and Berkane, Soulaimane and Hamel, Tarek},
+    title = {Scalar-measurement attitude estimation on SO(3) with bias compensation},
+    journal = {arXiv:2603.02478},
+    year = {2026}
+}
+

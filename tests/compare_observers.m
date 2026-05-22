@@ -23,7 +23,7 @@ ground_truth.time = time_gt;
 disp('Simulating sensors...');
 
 % IMU (1000 Hz)
-imu_params.frequency = 500;
+imu_params.frequency = 1000;
 imu_params.accel_noise_std = 0.05;
 imu_params.gyro_noise_std = 0.01;
 imu_params.accel_bias = zeros(3,1);
@@ -70,7 +70,6 @@ init_state.R = R_true{1} * R_err;
 
 % P0 Initialization (Generic uses 15x15, EKF uses 9x9 but will slice it automatically)
 params.P0 = blkdiag(initial_deviation_P^2*eye(3), initial_deviation_V^2*eye(3), initial_deviation_angle^2*eye(9));
-%params.P0 = blkdiag(eye(3), eye(3), eye(3), eye(3), eye(3));
 params.k_att = 100;
 
 
@@ -106,7 +105,7 @@ end
 
 [err_generic, rmse_gen] = compute_metrics(gt_downsampled, est_generic);
 
-
+% Downsample Ground Truth for EKF 
 M_est = length(est_ekf.time);
 gt_downsampled.time = est_ekf.time;
 gt_downsampled.P = zeros(3, M_est);
@@ -122,7 +121,7 @@ end
 
 % Print Comparison Table
 fprintf('\n=======================================================\n');
-fprintf('                  RMSE Comparison Table\n');
+fprintf('             RMSE Euclidian Comparison Table\n');
 fprintf('=======================================================\n');
 fprintf('Metric               | Generic Observer | Standard EKF\n');
 fprintf('-------------------------------------------------------\n');
@@ -130,10 +129,11 @@ fprintf('Position (m)         | %16.4f | %12.4f\n', rmse_gen.position_euclidean,
 fprintf('Velocity (m/s)       | %16.4f | %12.4f\n', rmse_gen.velocity_euclidean, rmse_ekf.velocity_euclidean);
 fprintf('Attitude Trace       | %16.6f | %12.6f\n', rmse_gen.attitude_trace, rmse_ekf.attitude_trace);
 fprintf('=======================================================\n');
+fprintf('\n\n\n')
 
 % Print Comparison Table
 fprintf('\n=======================================================\n');
-fprintf('                  RMSE Comparison Table\n');
+fprintf('            RMSE Geometric Comparison Table\n');
 fprintf('=======================================================\n');
 fprintf('Metric               | Generic Observer | Standard EKF\n');
 fprintf('-------------------------------------------------------\n');
@@ -149,5 +149,7 @@ errors_list    = {err_generic, err_ekf};
 legend_names   = {'Generic Observer', 'Standard EKF'};
 
 plot_paper_results(ground_truth, estimates_list, errors_list, legend_names);
+
+
 
 disp('Comparison test complete.');

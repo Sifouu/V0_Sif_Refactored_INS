@@ -1,0 +1,49 @@
+=============================================================
+  Observer Comparison: LCSS SVD vs LCSS Mahony (Fix & Dyn) 
+=============================================================
+
+[1/5] Generating ground truth (1000 Hz, 20 s)...
+[2/5] Simulating IMU and magnetometer...
+[3/5] Setting initial state...
+[4/5] Running observers for 4 cases...
+  Case 1: Six (acc $x,y,z$ + mag $x,y,z$)
+    LCSS-SVD         RMSE: 0.0456 | Final Error: 0.0000
+    LCSS-Mahony(Fix) RMSE: 0.1183 | Final Error: 0.0000
+    LCSS-Mahony(Dyn) RMSE: 0.0500 | Final Error: 0.0001
+  Case 2: Four (acc $y,z$ + mag $x,y$)
+    LCSS-SVD         RMSE: 0.0517 | Final Error: 0.0000
+    LCSS-Mahony(Fix) RMSE: 0.0958 | Final Error: 0.0000
+    LCSS-Mahony(Dyn) RMSE: 0.0503 | Final Error: 0.0002
+  Case 3: Three (acc $y,z$ + mag $y$)
+    LCSS-SVD         RMSE: 0.1864 | Final Error: 0.0000
+    LCSS-Mahony(Fix) RMSE: 0.1215 | Final Error: 0.0000
+    LCSS-Mahony(Dyn) RMSE: 0.0865 | Final Error: 0.0001
+  Case 4: Two (acc $y$ + mag $y$)
+    LCSS-SVD         RMSE: 0.9971 | Final Error: 0.9916
+    LCSS-Mahony(Fix) RMSE: 0.9910 | Final Error: 0.9810
+    LCSS-Mahony(Dyn) RMSE: 0.9893 | Final Error: 0.9782
+[5/5] Saving figure...
+Figure saved to ../figures/CIR_of_LCSS_SVD_and_Mahony_results.png
+
+===================================================================================================
+  METRICS COMPARISON TABLE
+===================================================================================================
+Observer / Case           | Overall RMSE | SS RMSE      | Max Error    | Conv Time(s) | Total Time(ms) | Step Time(us)
+---------------------------------------------------------------------------------------------------
+LCSS SVD (C1)             | 0.0456       | 0.0005       | 1.0000       | 0.0060       | 49.69          | 99.19       
+LCSS Mahony(Fix) (C1)     | 0.1183       | 0.0004       | 1.0000       | 0.0600       | 26.28          | 52.46       
+LCSS Mahony(Dyn) (C1)     | 0.0500       | 0.0005       | 1.0000       | 0.0080       | 27.31          | 54.50       
+---------------------------------------------------------------------------------------------------
+LCSS SVD (C2)             | 0.0517       | 0.0004       | 1.0000       | 0.0160       | 34.57          | 69.00       
+LCSS Mahony(Fix) (C2)     | 0.0958       | 0.0004       | 1.0000       | 0.0440       | 21.74          | 43.40       
+LCSS Mahony(Dyn) (C2)     | 0.0503       | 0.0005       | 1.0000       | 0.0060       | 22.59          | 45.09       
+---------------------------------------------------------------------------------------------------
+LCSS SVD (C3)             | 0.1864       | 0.0004       | 1.0000       | 0.0660       | 20.12          | 40.15       
+LCSS Mahony(Fix) (C3)     | 0.1215       | 0.0004       | 1.0000       | 0.0480       | 16.48          | 32.90       
+LCSS Mahony(Dyn) (C3)     | 0.0865       | 0.0005       | 1.0000       | 0.0060       | 17.56          | 35.04       
+---------------------------------------------------------------------------------------------------
+LCSS SVD (C4)             | 0.9971       | 0.9950       | 1.0018       | NaN          | 15.23          | 30.39       
+LCSS Mahony(Fix) (C4)     | 0.9910       | 0.9856       | 1.0004       | NaN          | 12.06          | 24.08       
+LCSS Mahony(Dyn) (C4)     | 0.9893       | 0.9829       | 1.0002       | NaN          | 12.52          | 24.99       
+---------------------------------------------------------------------------------------------------
+Test complete.

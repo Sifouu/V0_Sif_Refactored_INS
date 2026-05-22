@@ -9,10 +9,11 @@ function estimates = ekf_observer(measurements, init_state, params)
     N = length(time_imu);
     
     % Preallocate outputs
-    estimates.P = zeros(3, N);
-    estimates.V = zeros(3, N);
-    estimates.R = cell(1, N);
-    estimates.time = time_imu;
+    estimates.P     = zeros(3, N);
+    estimates.V     = zeros(3, N);
+    estimates.R     = cell(1, N);
+    estimates.time  = time_imu;
+    estimates.Sigma = zeros(3, 3, N); % 3x3 position covariance in inertial frame
     
     % Initialize Nominal State
     hat_p = init_state.P;
@@ -27,9 +28,10 @@ function estimates = ekf_observer(measurements, init_state, params)
     Q_w = params.Q_imu_gyro; % Gyroscope noise
     
     % Save initial estimates
-    estimates.P(:, 1) = hat_p;
-    estimates.V(:, 1) = hat_v;
-    estimates.R{1}    = hat_R;
+    estimates.P(:, 1)      = hat_p;
+    estimates.V(:, 1)      = hat_v;
+    estimates.R{1}         = hat_R;
+    estimates.Sigma(:,:,1) = P_cov(1:3, 1:3); % Already in inertial frame
     
     %% 2. Main Estimation Loop
     for i = 2:N
@@ -138,9 +140,11 @@ function estimates = ekf_observer(measurements, init_state, params)
         end
         
         % --- E. STORE ESTIMATES ---
-        estimates.P(:, i) = hat_p;
-        estimates.V(:, i) = hat_v;
-        estimates.R{i}    = hat_R;
+        estimates.P(:, i)      = hat_p;
+        estimates.V(:, i)      = hat_v;
+        estimates.R{i}         = hat_R;
+        % Position covariance is already in inertial frame for the EKF error-state
+        estimates.Sigma(:,:,i) = P_cov(1:3, 1:3);
     end
 end
 

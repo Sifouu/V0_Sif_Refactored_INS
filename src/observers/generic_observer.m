@@ -9,10 +9,11 @@ function estimates = generic_observer(measurements, init_state, params)
     N = length(time_imu);
 
     % Preallocate outputs
-    estimates.P = zeros(3, N);
-    estimates.V = zeros(3, N);
-    estimates.R = cell(1, N);
-    estimates.time = time_imu;
+    estimates.P     = zeros(3, N);
+    estimates.V     = zeros(3, N);
+    estimates.R     = cell(1, N);
+    estimates.time  = time_imu;
+    estimates.Sigma = zeros(3, 3, N); % 3x3 position covariance in inertial frame
 
     % Initialize Rotation Matrix
     current_R = init_state.R;
@@ -41,9 +42,10 @@ function estimates = generic_observer(measurements, init_state, params)
     B_matrix(4:6, :) = eye(3);
 
     % Save initial estimates
-    estimates.P(:, 1) = init_state.P;
-    estimates.V(:, 1) = init_state.V;
-    estimates.R{1}    = init_state.R;
+    estimates.P(:, 1)      = init_state.P;
+    estimates.V(:, 1)      = init_state.V;
+    estimates.R{1}         = init_state.R;
+    estimates.Sigma(:,:,1) = current_R * P_cov(1:3, 1:3) * current_R';
     
     %% 2. Main Estimation Loop
     for i = 2:N
@@ -159,9 +161,11 @@ function estimates = generic_observer(measurements, init_state, params)
         current_R = ALLFUNCS.orthogonalize(current_R);
 
         % --- E. STORE ESTIMATES ---
-        estimates.P(:, i) = current_R * x(1:3);
-        estimates.V(:, i) = current_R * x(4:6);
-        estimates.R{i}    = current_R;
+        estimates.P(:, i)      = current_R * x(1:3);
+        estimates.V(:, i)      = current_R * x(4:6);
+        estimates.R{i}         = current_R;
+        % Rotate body-frame position covariance to inertial frame
+        estimates.Sigma(:,:,i) = current_R * P_cov(1:3, 1:3) * current_R';
     end
 end
 
